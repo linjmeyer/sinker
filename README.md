@@ -1,4 +1,4 @@
-# Sink
+# Sink⚓
 
 A tool for synchronizing secrets managers with Kubernetes secrets.
 
