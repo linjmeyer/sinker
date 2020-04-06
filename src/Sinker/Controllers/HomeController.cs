@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Geedunk.Controllers
+namespace Sinker.Controllers
 {
     [ApiController]
     [Route("/")]
@@ -20,7 +20,7 @@ namespace Geedunk.Controllers
         {
             var responseData = new Dictionary<string,string>();
             responseData.Add("DOTNET_VERSION", System.Environment.Version.ToString());
-            responseData.Add("APP_VERSION", this.GetType().Assembly.GetName().Version.ToString());
+            responseData.Add("SINKER_VERSION", this.GetType().Assembly.GetName().Version.ToString());
             return Ok(responseData);
         }
     }

@@ -11,10 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Geedunk.HostedServices;
-using Geedunk.Common;
+using Sinker.HostedServices;
+using Sinker.Common;
 
-namespace Geedunk
+namespace Sinker
 {
     public class Startup
     {

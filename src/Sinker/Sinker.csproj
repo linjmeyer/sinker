@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Geedunk.Common\Geedunk.Common.csproj" />
+    <ProjectReference Include="..\Sinker.Common\Sinker.Common.csproj" />
   </ItemGroup>
 
 
