@@ -1,6 +1,6 @@
 # Sink
 
-A tool for syncronizing secrets managers with Kubernetes secrets.
+A tool for synchronizing secrets managers with Kubernetes secrets.
 
 **Status:** Proof of concept
 
