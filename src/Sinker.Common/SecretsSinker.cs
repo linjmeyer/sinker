@@ -24,7 +24,7 @@ namespace Sinker.Common
             _configuration = configuration;
         }
 
-        public async void UpdateAllSecretsAsync()
+        public async Task UpdateAllSecretsAsync()
         {
             _logger.LogInformation($"Checking all secrets for updates");
             // Update all secrets from providers
