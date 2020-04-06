@@ -9,24 +9,27 @@ using KubeClient.Models;
 using KubeClient.ResourceClients;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Sinker.HostedServices
 {
     public class SecretsWatcherHostedService : IHostedService, IDisposable
     {
-        private static KeyValuePair<string,string> LABEL = new KeyValuePair<string,string>("managed-by-sinker", "true");
-        private static string LABEL_SELECTOR = $"{LABEL.Key}={LABEL.Value}";
+        
         private static TimeSpan SCHEDULE = TimeSpan.FromSeconds(30);
         private IKubeApiClient _kubeClient;
         private ILogger<SecretsWatcherHostedService> _logger;
         private IEnumerable<ISecretsProvider> _providers;
+        private SinkerConfiguration _configuration;
         private Timer _timer;
 
-        public SecretsWatcherHostedService(ILogger<SecretsWatcherHostedService> logger, KubeClientOptions kubeOptions, IEnumerable<ISecretsProvider> providers)
+        public SecretsWatcherHostedService(ILogger<SecretsWatcherHostedService> logger, KubeClientOptions kubeOptions, 
+            IEnumerable<ISecretsProvider> providers, IOptions<SinkerConfiguration> configuration)
         {
             _logger = logger;
             _kubeClient = KubeApiClient.Create(kubeOptions);
             _providers = providers;
+            _configuration = configuration.Value;
         }
 
         public void Dispose()
@@ -107,7 +110,8 @@ namespace Sinker.HostedServices
             
             foreach(var ns in allNamespaces)
             {
-                var secrets = await _kubeClient.SecretsV1().List(kubeNamespace: ns.Metadata.Name, labelSelector: LABEL_SELECTOR);
+                var labelSelector = _configuration.Labels.ToLabelSelector();
+                var secrets = await _kubeClient.SecretsV1().List(kubeNamespace: ns.Metadata.Name, labelSelector: labelSelector);
                 if(secrets.Any())
                 {
                     allSecrets.AddRange(secrets);
@@ -152,7 +156,10 @@ namespace Sinker.HostedServices
                 }
             };
 
-            kubeSecret.Metadata.Labels.Add(LABEL.Key, LABEL.Value);
+            foreach(var label in _configuration.Labels)
+            {
+                kubeSecret.Metadata.Labels.Add(label.Key, label.Value);
+            }
             
             return kubeSecret;
         }
