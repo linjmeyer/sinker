@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using KubeClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sinker.Common;
 using Sinker.Extensions;
-using Sinker.HostedServices;
 
 namespace Sinker.Controllers
 {
