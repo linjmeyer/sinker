@@ -45,7 +45,7 @@ namespace Sinker.HostedServices
             _logger.LogInformation($"Starting {nameof(SecretsWatcherHostedService)} with a refresh rate of {schedule}");
          
             _sinker = new SecretsSinker(sinkerLogger, _kubeOptions, _providers, _configuration);
-            _timer = new Timer((object state) => { _sinker.UpdateAllSecretsAsync(); }, null, TimeSpan.Zero, schedule);
+            _timer = new Timer(async (object state) => { await _sinker.UpdateAllSecretsAsync(); }, null, TimeSpan.Zero, schedule);
             
             return Task.CompletedTask;
         }
