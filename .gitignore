@@ -1,18 +1,11 @@
 # VS Code
 .vscode/*
 
-# Ignores compiled TypeScript files
-*.js.map
-*wwwroot/typescript/*
-
 # appsettings.json ignored to keep passwords and stuff out
-*settings.json*
+*settings.Development.json*
 
 # Docker compose override where config/passwords/etc. are
 *docker-compose.*.yml
-
-# Secrets
-*secret*
 
 # Ignore serilog files 
 [Ss]erilog/
