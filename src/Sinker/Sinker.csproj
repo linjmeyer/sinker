@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <PackageReference Include="App.Metrics.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="App.Metrics.AspNetCore.Endpoints" Version="3.2.0" />
+    <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="3.2.0" />
+    <PackageReference Include="App.Metrics.Extensions.Hosting" Version="3.2.0" />
+    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="3.2.0" />
+
     <PackageReference Include="KubeClient" Version="2.3.11" />
     <PackageReference Include="KubeClient.Extensions.Configuration" Version="2.3.11" />
     <PackageReference Include="KubeClient.Extensions.DependencyInjection" Version="2.3.11" />

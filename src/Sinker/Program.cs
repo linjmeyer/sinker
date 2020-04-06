@@ -15,6 +15,9 @@ namespace Sinker
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSinkerAppMetrics();
+                     // AllowSynchronousIO necessary for App.Metrics
+                    webBuilder.UseKestrel(kestrel => kestrel.AllowSynchronousIO = true);
                 });
     }
 }
